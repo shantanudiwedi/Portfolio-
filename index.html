@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shantanu Diwedi — Software Engineering &amp; AI Portfolio</title>
+  <meta name="description" content="Personal portfolio of Shantanu Diwedi, B.Tech Computer Science student at MIT ADT University, Pune, specialising in AI systems, agentic workflows, and modern web engineering." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="photo.jpeg" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Shantanu Diwedi — Software Engineering &amp; AI Portfolio" />
+  <meta property="og:description" content="B.Tech CSE student at MIT ADT University, Pune. Building agentic AI systems, full-stack apps, and IoT solutions." />
+  <meta property="og:image" content="photo.jpeg" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Shantanu Diwedi — AI &amp; Full-Stack Developer" />
+  <meta name="twitter:description" content="B.Tech CSE student building agentic AI, full-stack apps and IoT solutions. Pune, India." />
+  <meta name="twitter:image" content="photo.jpeg" />
+
+  <!-- Preload critical asset -->
+  <link rel="preload" as="image" href="photo.jpeg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body id="top">
+
+  <!-- Top-right persistent Skip pill for Splash and Video -->
+  <button class="intro-skip-pill" id="globalSkipBtn" type="button" aria-label="Skip to main site">Skip [ESC]</button>
+
+  <!-- ==========================================================
+       0. START-EXPERIENCE SPLASH (Premier First Screen)
+       ========================================================= -->
+  <div class="splash" id="splashScreen">
+    <div class="splash-center">
+      <div class="splash-portrait-ring">
+        <img class="splash-portrait" src="photo.jpeg" alt="Shantanu Diwedi" width="240" height="240" />
+      </div>
+      <h1 class="splash-name">SHANTANU DIWEDI</h1>
+      <p class="splash-tagline">AI &amp; FULL-STACK DEVELOPER // PUNE, INDIA</p>
+      <button class="splash-start-btn" id="splashStartBtn" type="button" autofocus>START EXPERIENCE &rarr;</button>
+      <span class="splash-hint">Esc to skip</span>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       1. GATE SCREEN (Secondary/legacy fallback layer)
+       ========================================================= -->
+  <div class="gate is-hidden" id="gateScreen">
+    <div class="gate-inner">
+      <img class="gate-photo" src="photo.jpeg" alt="Black-and-white portrait of Shantanu Diwedi" width="260" height="347" />
+      <h1 class="gate-name">Shantanu Diwedi</h1>
+      <p class="gate-sub">B.Tech CSE Student · AI &amp; Software Engineering<br />MIT ADT University, Pune</p>
+      <button class="btn btn-primary" id="startBtn" type="button">Start experience</button>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       2. MATCH-CUT VIDEO (Truly Full-Screen)
+       ========================================================= -->
+  <div class="intro-video" id="introVideo">
+    <video id="matchCutVideo" playsinline preload="metadata" poster="photo.jpeg">
+      <source src="assets/video/intro.mp4" type="video/mp4" />
+      <source src="match-cut.mp4" type="video/mp4" />
+    </video>
+    <div class="intro-video-effects" aria-hidden="true"></div>
+    <div class="intro-video-progress" aria-hidden="true">
+      <span class="intro-video-progress-fill" id="videoProgressFill"></span>
+    </div>
+  </div>
+
+  <!-- Fixed background frame (stays still while content scrolls) -->
+  <div class="bg-frame" aria-hidden="true">
+    <canvas id="bgCanvas"></canvas>
+  </div>
+
+  <!-- ==========================================================
+       SITE WRAPPER
+       ========================================================= -->
+  <div class="site" id="siteRoot">
+
+    <!-- Global Pull-Cord Theme Toggle (Dark & Light) -->
+    <button class="pull-cord" id="pullCord" aria-label="Toggle theme" type="button">
+      <span class="cord-wrap" id="cordWrap">
+        <span class="cord-rope"></span>
+        <span class="cord-knob" aria-hidden="true">
+          <svg viewBox="0 0 28 42" width="28" height="42" fill="none">
+            <defs>
+              <radialGradient id="knobGrad" cx="35%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#d49b6a" />
+                <stop offset="45%" stop-color="#8a532b" />
+                <stop offset="85%" stop-color="#4a2811" />
+                <stop offset="100%" stop-color="#2c1406" />
+              </radialGradient>
+              <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#c8935c"/>
+                <stop offset="50%" stop-color="#ffd599"/>
+                <stop offset="100%" stop-color="#8c5828"/>
+              </linearGradient>
+            </defs>
+            <rect x="10" y="0" width="8" height="4" rx="1" fill="url(#ringGrad)" />
+            <path d="M14 4 C7 4, 3 10, 3 22 C3 34, 8 40, 14 40 C20 40, 25 34, 25 22 C25 10, 21 4, 14 4 Z" fill="url(#knobGrad)" />
+            <ellipse cx="11" cy="18" rx="2.5" ry="9" fill="rgba(255,255,255,0.22)" transform="rotate(-12 11 18)" />
+            <circle cx="14" cy="38" r="1.5" fill="url(#ringGrad)" />
+          </svg>
+        </span>
+      </span>
+    </button>
+
+    <!-- Nav -->
+    <header class="nav" id="mainNav" data-layer="1">
+      <a href="#hero" class="nav-logo" aria-label="Shantanu Diwedi Home">Shantanu Diwedi</a>
+      <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
+        <a href="#doors" class="nav-link">Overview</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#achievements" class="nav-link">Achievements</a>
+        <a href="#timeline" class="nav-link">Timeline</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="resume.pdf" class="nav-link resume-trigger" id="resumeLinkNav" aria-haspopup="dialog">Resume</a>
+      </nav>
+      <a href="resume.pdf" id="resumeBtnNav" class="btn btn-secondary nav-resume resume-trigger" aria-haspopup="dialog">Resume ↓</a>
+      <a href="#contact" class="btn btn-primary nav-cta">Hire me</a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation menu">
+        <span class="nav-toggle-icon"></span>
+      </button>
+    </header>
+
+    <main>
+      <!-- ==========================================================
+           1. HERO
+           ========================================================= -->
+      <section class="hero" id="hero">
+        <div class="container">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <span class="eyebrow" data-layer="2">Open to 2027 internships &amp; collaborations</span>
+              <h1 class="headline-display" data-layer="3">
+                Shantanu <span class="accent">Diwedi</span>
+              </h1>
+
+              <!-- Spiral-Bound Calendar Flip-Notepad (About Me) -->
+              <button class="flip-notepad" id="aboutFlipPad" type="button" aria-label="About me calendar flip pad. Click or press arrow keys to flip." aria-live="polite" data-layer="4">
+                <!-- Metal spiral rings along top edge -->
+                <div class="flip-rings" aria-hidden="true">
+                  <span class="flip-ring"><i class="ring-hole ring-hole--top"></i><i class="ring-loop"></i><i class="ring-hole ring-hole--bottom"></i></span>
+                  <span class="flip-ring"><i class="ring-hole ring-hole--top"></i><i class="ring-loop"></i><i class="ring-hole ring-hole--bottom"></i></span>
+                  <span class="flip-ring"><i class="ring-hole ring-hole--top"></i><i class="ring-loop"></i><i class="ring-hole ring-hole--bottom"></i></span>
+                  <span class="flip-ring"><i class="ring-hole ring-hole--top"></i><i class="ring-loop"></i><i class="ring-hole ring-hole--bottom"></i></span>
+                  <span class="flip-ring"><i class="ring-hole ring-hole--top"></i><i class="ring-loop"></i><i class="ring-hole ring-hole--bottom"></i></span>
+                  <span class="flip-ring"><i class="ring-hole ring-hole--top"></i><i class="ring-loop"></i><i class="ring-hole ring-hole--bottom"></i></span>
+                </div>
+
+                <!-- 2-3 thin stacked page edges underneath -->
+                <div class="flip-stack" aria-hidden="true">
+                  <div class="flip-stack-edge flip-stack-edge--2"></div>
+                  <div class="flip-stack-edge flip-stack-edge--1"></div>
+                </div>
+
+                <!-- Flip Pages Stage (4 pages with keyword chips) -->
+                <div class="flip-stage">
+                  <!-- Page 1: ABOUT -->
+                  <div class="flip-page is-active" data-page="0">
+                    <span class="flip-label">ABOUT</span>
+                    <div class="flip-chips">
+                      <span class="keyword-chip">B.Tech Student</span>
+                      <span class="keyword-chip">CSE</span>
+                      <span class="keyword-chip">Builder</span>
+                    </div>
+                  </div>
+                  <!-- Page 2: FOCUS -->
+                  <div class="flip-page" data-page="1">
+                    <span class="flip-label">FOCUS</span>
+                    <div class="flip-chips">
+                      <span class="keyword-chip">Agentic AI</span>
+                      <span class="keyword-chip">Doc Intelligence</span>
+                      <span class="keyword-chip">Full-Stack</span>
+                    </div>
+                  </div>
+                  <!-- Page 3: RECOGNITION -->
+                  <div class="flip-page" data-page="2">
+                    <span class="flip-label">RECOGNITION</span>
+                    <div class="flip-chips">
+                      <span class="keyword-chip">SIH Finalist</span>
+                      <span class="keyword-chip">Rank #13</span>
+                      <span class="keyword-chip">Grant Awardee</span>
+                    </div>
+                  </div>
+                  <!-- Page 4: BUILDING -->
+                  <div class="flip-page" data-page="3">
+                    <span class="flip-label">BUILDING</span>
+                    <div class="flip-chips">
+                      <span class="keyword-chip">Bid Verification</span>
+                      <span class="keyword-chip">AI Workflows</span>
+                      <span class="keyword-chip">Hackathons</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Counter bottom-right -->
+                <span class="flip-counter" id="flipCounter" aria-hidden="true">01 / 04</span>
+              </button>
+
+              <div class="hero-actions" data-layer="5">
+                <a href="#projects" class="btn btn-primary">View projects</a>
+                <a href="#contact" class="btn btn-secondary">Hire me</a>
+                <a href="resume.pdf" id="resumeBtnHero" class="btn btn-secondary resume-trigger" aria-haspopup="dialog">Resume ↓</a>
+              </div>
+              <div class="hero-meta">
+                <span class="pill-util">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  Pune, India
+                </span>
+                <span class="pill-util">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                  MIT ADT CSE (2025–2029)
+                </span>
+              </div>
+            </div>
+
+            <div class="hero-visual" data-layer="6">
+              <img class="hero-photo" src="photo.jpeg" alt="Shantanu Diwedi portrait" width="380" height="507" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================
+           2. FOUR DOORS
+           ========================================================= -->
+      <section class="section section--doors" id="doors">
+        <div class="container">
+          <div class="section-head section-head--center reveal" data-layer="7">
+            <span class="eyebrow">Interactive Portals</span>
+            <h2 class="headline-lg">Magic happens behind the doors</h2>
+          </div>
+          <div class="doors-grid reveal">
+          <a href="#projects" class="door door--navy" data-layer="8" aria-label="Projects: Agentic AI, GeM procurement compliance and institutional software.">
+            <span class="door-arch">
+              <span class="door-room" aria-hidden="true"></span>
+              <span class="door-leaf">
+                <span class="door-panel" aria-hidden="true"></span>
+                <span class="door-plate"><span class="door-title">Projects</span></span>
+                <span class="door-handle" aria-hidden="true"></span>
+                <span class="door-keyhole" aria-hidden="true"></span>
+              </span>
+              <span class="door-cta" aria-hidden="true">Click to enter</span>
+            </span>
+            <span class="door-reveal">
+              <span class="door-reveal-title">Projects</span>
+              <span class="door-reveal-sub">Work that ships</span>
+              <ul class="door-checks">
+                    <li>BharatSetu: AI bid compliance for GeM</li>
+                    <li>GoSolar: rooftop solar subsidy agent</li>
+                    <li>Senior Safe Tech</li>
+                    <li>Agentic AI, React and Go</li>
+              </ul>
+            </span>
+          </a>
+          <a href="#achievements" class="door door--plum" data-layer="9" aria-label="Achievements: Rank 13 national qualifier and SIH college finalist grant recipient.">
+            <span class="door-arch">
+              <span class="door-room" aria-hidden="true"></span>
+              <span class="door-leaf">
+                <span class="door-panel" aria-hidden="true"></span>
+                <span class="door-plate"><span class="door-title">Achievements</span></span>
+                <span class="door-handle" aria-hidden="true"></span>
+                <span class="door-keyhole" aria-hidden="true"></span>
+              </span>
+              <span class="door-cta" aria-hidden="true">Click to enter</span>
+            </span>
+            <span class="door-reveal">
+              <span class="door-reveal-title">Achievements</span>
+              <span class="door-reveal-sub">Recognition earned</span>
+              <ul class="door-checks">
+                    <li>Rank #13, National Agentic AI Hackathon 2026</li>
+                    <li>Evaluation score of 150 out of 180</li>
+                    <li>SIH 2026 college-level finalist</li>
+                    <li>Top 50 of 1000+ teams, Rs 10,000 grant</li>
+              </ul>
+            </span>
+          </a>
+          <a href="#timeline" class="door door--sage" data-layer="10" aria-label="Experience: Software development at Namaha Tech on React UIs and Go backend services.">
+            <span class="door-arch">
+              <span class="door-room" aria-hidden="true"></span>
+              <span class="door-leaf">
+                <span class="door-panel" aria-hidden="true"></span>
+                <span class="door-plate"><span class="door-title">Experience</span></span>
+                <span class="door-handle" aria-hidden="true"></span>
+                <span class="door-keyhole" aria-hidden="true"></span>
+              </span>
+              <span class="door-cta" aria-hidden="true">Click to enter</span>
+            </span>
+            <span class="door-reveal">
+              <span class="door-reveal-title">Experience</span>
+              <span class="door-reveal-sub">Real products, real users</span>
+              <ul class="door-checks">
+                    <li>Software Development Intern, Namaha Tech</li>
+                    <li>Interactive React interfaces</li>
+                    <li>Go backend for ManageMonk</li>
+                    <li>Serves institutes with 5k+ students</li>
+              </ul>
+            </span>
+          </a>
+          <a href="#timeline" class="door door--rust" data-layer="11" aria-label="Education: B.Tech Computer Science and Engineering at MIT ADT University, Pune.">
+            <span class="door-arch">
+              <span class="door-room" aria-hidden="true"></span>
+              <span class="door-leaf">
+                <span class="door-panel" aria-hidden="true"></span>
+                <span class="door-plate"><span class="door-title">Education</span></span>
+                <span class="door-handle" aria-hidden="true"></span>
+                <span class="door-keyhole" aria-hidden="true"></span>
+              </span>
+              <span class="door-cta" aria-hidden="true">Click to enter</span>
+            </span>
+            <span class="door-reveal">
+              <span class="door-reveal-title">Education</span>
+              <span class="door-reveal-sub">Where it started</span>
+              <ul class="door-checks">
+                    <li>B.Tech, Computer Science</li>
+                    <li>MIT ADT University, Pune</li>
+                    <li>2025 to 2029</li>
+                    <li>Seeking SWE and AI internships</li>
+              </ul>
+            </span>
+          </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================
+           3. PROJECTS
+           ========================================================= -->
+      <section class="section" id="projects">
+        <div class="container">
+          <div class="section-head reveal" data-layer="12">
+            <span class="eyebrow">Selected Works</span>
+            <h2 class="headline-lg">Featured Projects</h2>
+            <p>Production applications and competition-winning prototypes combining large language models, automation agents, and modern web architectures.</p>
+          </div>
+          <div class="projects-grid">
+            
+            <!-- Wide Project 1: BharatSetu -->
+            <article class="project project--wide reveal" data-layer="13">
+              <div class="project-media">
+                <img src="Bharatsetu_Cheque.jpeg" alt="BharatSetu Smart India Hackathon Tinkering Grant-in-Aid Cheque for Rs 10,000" loading="lazy" />
+              </div>
+              <div class="project-body">
+                <div class="project-top">
+                  <span class="project-tag">SIH 2026 · PS 26100 Finalist</span>
+                  <span class="caption accent">Grant Awardee</span>
+                </div>
+                <h3 class="headline-md">BharatSetu</h3>
+                <p class="body-md project-desc">
+                  AI-powered bid compliance verification platform built for GeM (Government e-Marketplace) procurement procedures. Evaluates tender submissions against complex regulatory requirements with automated clause parsing. Ranked among the Top 50 of 1,000+ national college teams and awarded a ₹10,000 Tinkering Grant-in-Aid by MIT-ADT University.
+                </p>
+                <div class="chip-row">
+                  <span class="chip chip-light">Agentic AI</span>
+                  <span class="chip chip-light">Python</span>
+                  <span class="chip chip-light">Document AI</span>
+                  <span class="chip chip-light">GeM Procurement</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 2: GoSolar / Solar Agentic -->
+            <article class="project reveal" data-layer="14">
+              <div class="project-media project-media--placeholder" style="background: linear-gradient(135deg, #1a2a1a 0%, #0d1f0d 100%);">
+                <div class="project-placeholder-inner">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: #4caf50;" aria-hidden="true">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                  </svg>
+                  <div style="color: #f5f5f5; font-weight: 600; margin-top: 8px; font-size: 0.9rem;">GoSolar</div>
+                  <div style="color: rgba(255,255,255,0.5); font-size: 0.75rem; margin-top: 2px;">Agentic Solar Subsidy Advisor</div>
+                </div>
+              </div>
+              <div class="project-body">
+                <div class="project-top">
+                  <span class="project-tag">National Hackathon 2026</span>
+                  <span class="caption">Live Deployment</span>
+                </div>
+                <h3 class="headline-md">GoSolar / Solar Agentic</h3>
+                <p class="body-md project-desc">
+                  Autonomous rooftop solar subsidy advisory agent built with Akshat Jha and Shifa Sheikh for the Ziro Agentic AI Hackathon 2026. Streams dynamic tariff data, evaluates rooftop suitability, and automates subsidy documentation.
+                </p>
+                <div class="chip-row">
+                  <span class="chip chip-light">Agentic Workflows</span>
+                  <span class="chip chip-light">Next.js</span>
+                  <span class="chip chip-light">FastAPI</span>
+                </div>
+                <div class="project-links">
+                  <a href="https://rooftop-solar-subsidy-agent.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="height: 40px; font-size: 14px; padding: 6px 14px;">
+                    <span>Visit Live Agent</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 3: Senior Safe Tech -->
+            <article class="project reveal" data-layer="15">
+              <div class="project-media project-media--placeholder" style="background: #e0d9d4;">
+                <div class="project-placeholder-inner">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);" aria-hidden="true">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <path d="m9 12 2 2 4-4"></path>
+                  </svg>
+                  <div style="color: var(--primary); font-weight: 600; margin-top: 8px; font-size: 0.9rem;">Senior Safe Tech</div>
+                  <div style="color: var(--muted); font-size: 0.75rem; margin-top: 2px;">Smart Assistive &amp; Emergency Architecture</div>
+                </div>
+              </div>
+              <div class="project-body">
+                <div class="project-top">
+                  <span class="project-tag">Assistive Tech &amp; IoT</span>
+                  <span class="caption">In Development</span>
+                </div>
+                <h3 class="headline-md">Senior Safe Tech</h3>
+                <p class="body-md project-desc">
+                  ESP8266 wearable with MPU-6050 accelerometer detects falls using threshold + impact analysis; triggers instant GSM SMS and voice call alerts to emergency contacts, with a live web dashboard for caregiver monitoring.
+                </p>
+                <div class="chip-row">
+                  <span class="chip chip-light">ESP8266</span>
+                  <span class="chip chip-light">Accelerometer</span>
+                  <span class="chip chip-light">GSM SMS/Call</span>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================
+           4. ACHIEVEMENTS
+           ========================================================= -->
+      <section class="section" id="achievements">
+        <div class="container">
+          <div class="section-head reveal" data-layer="16">
+            <span class="eyebrow">Honours &amp; Recognition</span>
+            <h2 class="headline-lg">National Achievements</h2>
+            <p>Competitive distinctions awarded in nationwide agentic artificial intelligence hackathons and government innovation challenges.</p>
+          </div>
+          <div class="ach-grid">
+
+            <!-- Card 1: National Agentic AI Hackathon -->
+            <article class="ach ach--portrait reveal">
+              <img src="FBI_Rank.jpeg" alt="National Qualification Rank 13 Certificate from Ziro.Digital for Team FBI" loading="lazy" />
+              <div class="ach-body">
+                <div class="ach-stat">Rank #13</div>
+                <h3 class="headline-sm">Ziro.Digital National Agentic AI Hackathon 2026</h3>
+                <p class="body-md muted">
+                  Secured National Qualification Rank #13 across India with team FBI, achieving an aggregate score of 150/180 for developing autonomous solar advisory agents.
+                </p>
+              </div>
+            </article>
+
+            <!-- Card 2: SIH 2026 Finalist & Cheque -->
+            <article class="ach reveal">
+              <img src="Bharatsetu_Cheque.jpeg" alt="MIT-ADT University Tinkering Grant-in-Aid Cheque for Rs 10,000 awarded for BharatSetu" loading="lazy" />
+              <div class="ach-body">
+                <div class="ach-stat">₹10,000</div>
+                <h3 class="headline-sm">SIH 2026 Finalist &amp; Tinkering Grant-in-Aid</h3>
+                <p class="body-md muted">
+                  Selected as college-level finalist for Smart India Hackathon (PS 26100) with BharatSetu in the Top 50 of 1,000+ teams; received the ₹10,000 MIT-ADT research grant.
+                </p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================
+           5. TIMELINE (Scroll-driven with sticky left panel)
+           ========================================================= -->
+      <section class="section timeline-section" id="timeline">
+        <div class="timeline-glow" id="timelineGlow" aria-hidden="true"></div>
+        <div class="container timeline-container">
+          
+          <!-- Left Sticky Panel -->
+          <div class="timeline-left">
+            <div class="timeline-sticky-content">
+              <span class="eyebrow"><i class="dot"></i> My story</span>
+              <h2 class="timeline-title">Let's go back in time.</h2>
+              
+              <div class="timeline-big-year-wrap">
+                <span class="timeline-big-year" id="timelineBigYear">2026</span>
+              </div>
+              
+              <div class="timeline-date-mono" id="timelineDateRange">DEC 2026 — FEB 2027</div>
+              
+              <div class="timeline-progress-wrap">
+                <div class="timeline-counter" id="timelineCounter">01 / 04</div>
+                <div class="timeline-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                  <span class="timeline-bar-fill" id="timelineBarFill" style="width: 25%;"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Scrolling Entries Column -->
+          <div class="timeline-right" id="timelineEntries">
+            <div class="timeline-track-line" aria-hidden="true">
+              <div class="timeline-active-dot" id="timelineActiveDot"></div>
+            </div>
+
+            <!-- Entry 1 -->
+            <article class="timeline-entry is-active" data-index="1" data-year="2026" data-dates="DEC 2026 — FEB 2027">
+              <span class="entry-dot" aria-hidden="true"></span>
+              <div class="entry-body">
+                <span class="entry-dates">Dec 2026 — Feb 2027</span>
+                <h3 class="entry-role">Software Development Intern</h3>
+                <div class="entry-org">Namaha Tech · Pune, India</div>
+              </div>
+            </article>
+
+            <!-- Entry 2 -->
+            <article class="timeline-entry" data-index="2" data-year="2025" data-dates="2025 — PRESENT">
+              <span class="entry-dot" aria-hidden="true"></span>
+              <div class="entry-body">
+                <span class="entry-dates">2025 — Present</span>
+                <h3 class="entry-role">B.Tech in Computer Science &amp; Engineering</h3>
+                <div class="entry-org">MIT ADT University · Pune, India</div>
+              </div>
+            </article>
+
+            <!-- Entry 3 -->
+            <article class="timeline-entry" data-index="3" data-year="2023" data-dates="2023 — 2025">
+              <span class="entry-dot" aria-hidden="true"></span>
+              <div class="entry-body">
+                <span class="entry-dates">2023 — 2025</span>
+                <h3 class="entry-role">Class 11–12 (Higher Secondary · PCM)</h3>
+                <div class="entry-org">Nowrosjee Wadia College · Pune, India</div>
+              </div>
+            </article>
+
+            <!-- Entry 4 -->
+            <article class="timeline-entry" data-index="4" data-year="2023" data-dates="UP TO 2023">
+              <span class="entry-dot" aria-hidden="true"></span>
+              <div class="entry-body">
+                <span class="entry-dates">Up to 2023</span>
+                <h3 class="entry-role">High School Education (Scored 89%)</h3>
+                <div class="entry-org">Agnel's Vidyankur School · Pune, India</div>
+              </div>
+            </article>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==========================================================
+           6. CONTACT / HIRE ME (Redesigned with Glassy Top Card & Two Columns)
+           ========================================================= -->
+      <section class="contact" id="contact">
+        <div class="container contact-container">
+
+          <!-- ── Top Glassy Hero Card ────────────────────────────── -->
+          <div class="contact-hero-card">
+            <div class="contact-hero-card__glow" aria-hidden="true"></div>
+            <div class="contact-hero-card__top">
+              <span class="contact-hero-card__eyebrow">Direct Collaboration</span>
+              <div class="status-pill"><span class="pulse-ring"></span>Available for 2027 internships</div>
+            </div>
+            <h2 class="contact-hero-card__heading">
+              <span class="contact-hero-card__line1">Need something built?</span>
+              <span class="contact-hero-card__line2">Let's make it happen.</span>
+            </h2>
+            <p class="contact-hero-card__desc">
+              Open to SWE and AI internships, agentic systems work and high-impact web development.
+            </p>
+            <div class="contact-hero-card__actions">
+              <a href="#contact-form" class="btn btn-primary contact-scroll-btn">Get in touch</a>
+              <a href="#projects" class="btn btn-secondary">Explore projects &darr;</a>
+              <a href="resume.pdf" class="btn btn-secondary resume-trigger" aria-haspopup="dialog">Resume &nearr;</a>
+            </div>
+          </div>
+
+          <!-- ── Two Columns Below Card ─────────────────────────── -->
+          <div class="contact-split">
+
+            <!-- Left: Reach me directly link cards -->
+            <div class="contact-reach">
+              <h3 class="contact-section-title">Reach me directly</h3>
+              <div class="contact-cards-list">
+
+                <a class="contact-link-card" href="mailto:shantanudiwedi2007@gmail.com" aria-label="Email Shantanu Diwedi">
+                  <span class="contact-link-card__icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                  </span>
+                  <span class="contact-link-card__meta">
+                    <span class="contact-link-card__label">Email</span>
+                    <span class="contact-link-card__value">shantanudiwedi2007@gmail.com</span>
+                  </span>
+                  <span class="contact-link-card__arrow" aria-hidden="true">&nearr;</span>
+                </a>
+
+                <a class="contact-link-card" href="tel:+918766642337" aria-label="Call Shantanu Diwedi">
+                  <span class="contact-link-card__icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  </span>
+                  <span class="contact-link-card__meta">
+                    <span class="contact-link-card__label">Phone</span>
+                    <span class="contact-link-card__value">+91 87666 42337</span>
+                  </span>
+                  <span class="contact-link-card__arrow" aria-hidden="true">&nearr;</span>
+                </a>
+
+                <a class="contact-link-card" href="https://wa.me/918766642337" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Shantanu Diwedi">
+                  <span class="contact-link-card__icon contact-link-card__icon--whatsapp" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                  </span>
+                  <span class="contact-link-card__meta">
+                    <span class="contact-link-card__label">WhatsApp</span>
+                    <span class="contact-link-card__value">+91 87666 42337</span>
+                  </span>
+                  <span class="contact-link-card__arrow" aria-hidden="true">&nearr;</span>
+                </a>
+
+                <a class="contact-link-card" href="https://github.com/shantanudiwedi" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                  <span class="contact-link-card__icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                  </span>
+                  <span class="contact-link-card__meta">
+                    <span class="contact-link-card__label">GitHub</span>
+                    <span class="contact-link-card__value">shantanudiwedi</span>
+                  </span>
+                  <span class="contact-link-card__arrow" aria-hidden="true">&nearr;</span>
+                </a>
+
+                <a class="contact-link-card" href="https://linkedin.com/in/shantanudiwedi" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                  <span class="contact-link-card__icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                  </span>
+                  <span class="contact-link-card__meta">
+                    <span class="contact-link-card__label">LinkedIn</span>
+                    <span class="contact-link-card__value">shantanudiwedi</span>
+                  </span>
+                  <span class="contact-link-card__arrow" aria-hidden="true">&nearr;</span>
+                </a>
+
+                <a class="contact-link-card contact-link-card--leetcode" href="https://leetcode.com/u/shantanudiwedi" target="_blank" rel="noopener noreferrer" aria-label="LeetCode Profile">
+                  <span class="contact-link-card__icon contact-link-card__icon--leetcode" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>
+                  </span>
+                  <span class="contact-link-card__meta">
+                    <span class="contact-link-card__label">LeetCode</span>
+                    <span class="contact-link-card__value">shantanudiwedi</span>
+                  </span>
+                  <span class="contact-link-card__arrow" aria-hidden="true">&nearr;</span>
+                </a>
+
+                <a class="contact-link-card resume-trigger" href="resume.pdf" aria-haspopup="dialog" aria-label="Open Shantanu's Resume">
+                  <span class="contact-link-card__icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                  </span>
+                  <span class="contact-link-card__meta">
+                    <span class="contact-link-card__label">Resume</span>
+                    <span class="contact-link-card__value">View Shantanu's Resume (PDF)</span>
+                  </span>
+                  <span class="contact-link-card__arrow" aria-hidden="true">&nearr;</span>
+                </a>
+
+              </div>
+            </div>
+
+            <!-- Right: Send a message form -->
+            <div class="contact-form-col">
+              <form class="contact__form" id="contact-form">
+                <!-- Honeypot & hidden metadata -->
+                <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" />
+                <input type="hidden" name="_subject" value="New Portfolio Contact Submission (Shantanu Diwedi)" />
+                <input type="hidden" name="_captcha" value="false" />
+
+                <h3 class="contact__form-title">Send a message</h3>
+
+                <div class="contact__form-row">
+                  <div class="contact__field">
+                    <label for="contactName">Name</label>
+                    <input type="text" name="name" id="contactName" placeholder="E.g. Elena Rostova" required autocomplete="name">
+                    <span class="field-error" id="nameError" role="alert"></span>
+                  </div>
+                  <div class="contact__field">
+                    <label for="contactEmail">Email</label>
+                    <input type="email" name="email" id="contactEmail" placeholder="name@domain.com" required autocomplete="email">
+                    <span class="field-error" id="emailError" role="alert"></span>
+                  </div>
+                </div>
+
+                <div class="contact__field">
+                  <label for="contactWork">Project / Role <span class="contact__optional">(optional)</span></label>
+                  <input type="text" name="scope" id="contactWork" placeholder="E.g. AI Internship / Full-Stack Project" autocomplete="off">
+                </div>
+
+                <div class="contact__field">
+                  <label for="contactMessage">Message</label>
+                  <textarea name="message" id="contactMessage" rows="4" placeholder="Tell me about your idea…" required></textarea>
+                  <span class="field-error" id="messageError" role="alert"></span>
+                </div>
+
+                <div class="contact__form-footer">
+                  <button type="submit" class="btn-send" id="submitBtn">
+                    Send via WhatsApp <span class="arrow">&rarr;</span>
+                  </button>
+                  <span class="form-hint">Opens WhatsApp with your message pre-filled</span>
+                </div>
+
+                <div class="form-status" id="formStatus" aria-live="polite"></div>
+              </form>
+            </div>
+
+          </div><!-- /.contact-split -->
+
+          <footer class="contact__foot">
+            <span>&copy; 2026 Shantanu Diwedi &middot; MIT ADT University, Pune</span>
+            <a href="#top">Back to top &uarr;</a>
+          </footer>
+        </div><!-- /.contact-container -->
+      </section>
+    </main>
+
+  </div>
+
+  <!-- Persistent Background Music Toggle Button (Fixed bottom-left) -->
+  <button id="bgMusicToggle" class="bg-music-toggle" aria-label="Toggle background music" aria-pressed="true" type="button">
+    <!-- Sound wave icon (shown when playing) -->
+    <svg class="music-icon music-icon--on" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+    </svg>
+    <!-- Slashed muted icon (shown when muted) -->
+    <svg class="music-icon music-icon--muted" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="1" y1="1" x2="23" y2="23"></line>
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <path d="M15.54 8.46a5 5 0 0 1 .46 5.54"></path>
+      <path d="M17 17a9.96 9.96 0 0 0 2.07-2.07"></path>
+    </svg>
+  </button>
+  <audio id="bgMusic" src="assets/audio/bg-music.mp4" loop preload="auto"></audio>
+
+  <!-- ========================================================
+       RESUME VIEWER MODAL (Fix 6)
+       ======================================================== -->
+  <div id="resumeModal" class="resume-modal" role="dialog" aria-modal="true" aria-label="Resume viewer" hidden>
+    <div class="resume-modal__backdrop" id="resumeModalBackdrop"></div>
+    <div class="resume-modal__box">
+      <div class="resume-modal__header">
+        <span class="resume-modal__title">Resume</span>
+        <div class="resume-modal__actions">
+          <a href="resume.pdf" download="Shantanu_Diwedi_Resume.pdf" class="btn btn-secondary resume-modal__download" style="height:36px;font-size:13px;padding:6px 14px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download
+          </a>
+          <a href="resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary resume-modal__newtab" style="height:36px;font-size:13px;padding:6px 14px;">Open in new tab ↗</a>
+          <button type="button" class="resume-modal__close" id="resumeModalClose" aria-label="Close resume viewer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="resume-modal__body">
+        <iframe id="resumeFrame" src="" title="Resume PDF viewer" class="resume-modal__frame"></iframe>
+        <p class="resume-modal__fallback">
+          Your browser cannot display PDFs inline.
+          <a href="resume.pdf" target="_blank" rel="noopener noreferrer">Open PDF in a new tab ↗</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
